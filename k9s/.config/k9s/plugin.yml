@@ -1,0 +1,102 @@
+# See https://k9scli.io/topics/plugins/
+plugin:
+
+  # https://github.com/derailed/k9s/issues/1228#issuecomment-975471842
+  # Henning C. Nielsen
+  #   - Added scope to also be able to show logs for a single container in the container scope of a pod.
+  #   - Added edit-secret
+  
+  # Shows the full log content and tails it
+  raw-logs-follow:
+    shortCut: Ctrl-L
+    description: logs -f
+    scopes:
+    - po
+    command: kubectl
+    background: false
+    args:
+    - logs
+    - -f
+    - $NAME
+    - -n
+    - $NAMESPACE
+    - --context
+    - $CONTEXT
+
+  raw-container-logs-follow:
+    shortCut: Ctrl-L
+    description: logs -f
+    scopes:
+    - containers
+    command: kubectl
+    background: false
+    args:
+    - logs
+    - -f
+    - $POD
+    - -n
+    - $NAMESPACE
+    - -c
+    - $NAME
+    - --context
+    - $CONTEXT
+
+  # Loads the full log in less instead of only the head tail
+  # or a number of minutes which currently is the only default option in k9s
+  log-less:
+    shortCut: Shift-L
+    description: "logs|less"
+    scopes:
+    - po
+    command: bash
+    background: false
+    args:
+    - -c
+    - '"$@" | less -r'
+    - dummy-arg
+    - kubectl
+    - logs
+    - $NAME
+    - -n
+    - $NAMESPACE
+    - --context
+    - $CONTEXT
+
+  log-container-less:
+    shortCut: Shift-L
+    description: "logs|less"
+    scopes:
+    - containers
+    command: bash
+    background: false
+    args:
+    - -c
+    - '"$@" | less -r'
+    - dummy-arg
+    - kubectl
+    - logs
+    - $POD
+    - -n
+    - $NAMESPACE
+    - -c
+    - $NAME
+    - --context
+    - $CONTEXT
+  
+  # https://github.com/derailed/k9s/issues/1017
+  # https://github.com/rajatjindal/kubectl-modify-secret
+  edit-secret:
+    shortCut: Ctrl-X
+    confirm: false
+    description: "Edit Decoded Secret"
+    scopes:
+      - secrets
+    command: kubectl
+    background: false
+    args:
+      - modify-secret
+      - --namespace
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+      - $NAME

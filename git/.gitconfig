@@ -1,0 +1,22 @@
+[gui]
+	recentrepo = /home/hc/src/trifork/fut-build
+[user]
+	email = hcnp@trifork.com
+	name = Henning C. Nielsen
+[core]
+	editor = nvim
+[push]
+	default = current
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	rs = restore
+	sa = stash
+	last = log -1 HEAD
+	f = fetch
+	ps = push -u
+	pl = pull
+[pull]
+	rebase = false

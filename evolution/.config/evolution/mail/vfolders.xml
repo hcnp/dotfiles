@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<filteroptions>
+  <ruleset>
+    <rule enabled="true" grouping="any" source="incoming">
+      <title>TODO</title>
+      <partset>
+        <part name="follow-up">
+          <value name="match-type" type="option" value="is not completed"/>
+        </part>
+      </partset>
+      <sources with="specific" autoupdate="true">
+        <folder uri="folder://2f245ee885668de9ef5f2094900d36952e4092c2/Indbakke" include-subfolders="true"/>
+        <folder uri="folder://2f245ee885668de9ef5f2094900d36952e4092c2/Trifork" include-subfolders="true"/>
+      </sources>
+    </rule>
+    <rule enabled="true" grouping="all" source="incoming">
+      <title>I dag</title>
+      <partset>
+        <part name="recv-date">
+          <value name="date-spec-type" type="option" value="after"/>
+          <value name="versus" type="datespec">
+            <datespec type="2" value="86400"/>
+          </value>
+        </part>
+        <part name="status">
+          <value name="match-type" type="option" value="is not"/>
+          <value name="flag" type="option" value="Seen"/>
+        </part>
+        <part name="follow-up">
+          <value name="match-type" type="option" value="is not"/>
+        </part>
+      </partset>
+      <sources with="specific" autoupdate="true">
+        <folder uri="folder://2f245ee885668de9ef5f2094900d36952e4092c2/Indbakke" include-subfolders="true"/>
+        <folder uri="folder://2f245ee885668de9ef5f2094900d36952e4092c2/Trifork" include-subfolders="true"/>
+      </sources>
+    </rule>
+  </ruleset>
+</filteroptions>

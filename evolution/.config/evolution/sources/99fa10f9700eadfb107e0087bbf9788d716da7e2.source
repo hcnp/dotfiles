@@ -1,0 +1,20 @@
+[Data Source]
+DisplayName=hcnp@trifork.com
+Enabled=false
+Parent=f14dc41d92d00f82065bad9e0ac3036be3375ca0
+
+[Mail Transport]
+BackendName=ews
+
+[Exchange Web Services Folder]
+ChangeKey=
+Id=
+Foreign=false
+ForeignSubfolders=false
+ForeignMail=
+FreebusyWeeksBefore=1
+FreebusyWeeksAfter=5
+Name=
+Public=false
+UsePrimaryAddress=false
+FetchGalPhotos=true

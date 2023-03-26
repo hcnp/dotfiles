@@ -119,3 +119,4 @@ fi
 ## My custom settings ## Henning
 export PATH="$PATH:$HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin"
 eval "$(direnv hook bash)"
+. "$HOME/.cargo/env"

@@ -1,0 +1,29 @@
+[Data Source]
+DisplayName=hcnp@trifork.com
+Enabled=true
+Parent=dfef96f3b37f31c13fa38984157c5cf8c61321b1
+
+[Mail Account]
+BackendName=ews
+IdentityUid=3ee70a59dce55872efc7aeb30c3c2885d3336fd4
+ArchiveFolder=
+NeedsInitialSetup=true
+MarkSeen=inconsistent
+MarkSeenTimeout=1500
+
+[Refresh]
+Enabled=true
+IntervalMinutes=5
+
+[Exchange Web Services Folder]
+ChangeKey=
+Id=
+Foreign=false
+ForeignSubfolders=false
+ForeignMail=
+FreebusyWeeksBefore=1
+FreebusyWeeksAfter=5
+Name=
+Public=false
+UsePrimaryAddress=false
+FetchGalPhotos=true

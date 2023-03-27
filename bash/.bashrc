@@ -117,6 +117,13 @@ if ! shopt -oq posix; then
 fi
 
 ## My custom settings ## Henning
+function guiRun(){
+	app=$1
+
+	shift
+	$(which $app) "$@" &> /dev/null &
+}
+
 export PATH="$PATH:$HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin"
 eval "$(direnv hook bash)"
 . "$HOME/.cargo/env"

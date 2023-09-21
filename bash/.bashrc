@@ -124,6 +124,12 @@ function guiRun(){
 	$(which $app) "$@" &> /dev/null &
 }
 
-export PATH="$PATH:$HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin"
+function gitBranchPrune() {
+    # https://gist.github.com/nicholashoule/ff5a00c8f02ea57f0b26889f022620f4
+    git fetch --prune
+    git branch --merged | grep -v \* | xargs git branch -d
+}
+
+export PATH="$PATH:$HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin:$(go env GOPATH)/bin"
 eval "$(direnv hook bash)"
 . "$HOME/.cargo/env"

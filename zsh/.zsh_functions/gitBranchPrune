@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# https://gist.github.com/nicholashoule/ff5a00c8f02ea57f0b26889f022620f4
+git fetch --prune
+git branch --merged | grep -v \* | xargs git branch -d

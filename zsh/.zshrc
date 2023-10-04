@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -104,9 +104,6 @@ SAVEHIST=1000
 setopt autocd extendedglob nomatch notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
-
-eval "$(direnv hook zsh)"
-. "$HOME/.cargo/env"
 
 # User configuration
 

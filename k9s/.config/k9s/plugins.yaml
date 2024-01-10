@@ -1,5 +1,5 @@
 # See https://k9scli.io/topics/plugins/
-plugin:
+plugins:
 
   # https://github.com/derailed/k9s/issues/1228#issuecomment-975471842
   # Henning C. Nielsen

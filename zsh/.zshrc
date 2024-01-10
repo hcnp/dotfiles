@@ -117,6 +117,8 @@ do
 	autoload -Uz ${f##*/}
 done
 
+eval "$(direnv hook zsh)"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

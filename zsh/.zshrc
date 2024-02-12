@@ -117,6 +117,13 @@ do
 	autoload -Uz ${f##*/}
 done
 
+autoload -U bashcompinit
+bashcompinit
+
+## pipx init
+  #eval "$(register-python-argcomplete pipx)"
+
+# direnv init
 eval "$(direnv hook zsh)"
 
 # fzf
@@ -146,3 +153,6 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Created by `pipx` on 2024-01-31 10:28:45
+export PATH="$PATH:/home/hcnp/.local/bin"

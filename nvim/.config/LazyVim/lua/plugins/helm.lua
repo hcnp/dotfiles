@@ -64,3 +64,10 @@ function h.tpl_filetype(path)
 end
 
 return Helm
+
+--[[
+Credits:
+  - https://github.com/mandos/nvim-helm/blob/master/lua/helm
+  - https://www.reddit.com/r/neovim/comments/12ub997/how_to_prevent_yaml_ls_from_attaching_to_helm/
+  - https://github.com/neovim/nvim-lspconfig/issues/2252
+]]--

@@ -1,2 +1,3 @@
 aws/.aws/credentials
 m2/.m2/repository
+nvim/.config/LazyVim/.config/LazyVim/lazy-lock.json

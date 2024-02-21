@@ -155,4 +155,4 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Created by `pipx` on 2024-01-31 10:28:45
-export PATH="$PATH:/home/hcnp/.local/bin"
+export PATH="$PATH:/home/hcnp/.local/bin:/home/hcnp/.local/share/LazyVim/mason/bin"

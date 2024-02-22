@@ -130,6 +130,11 @@ eval "$(direnv hook zsh)"
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
+# zoxide
+eval "$(zoxide init zsh)"
+zle -N zi
+bindkey '^[z' 'zi'
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

@@ -13,7 +13,6 @@ return {
           return false
         end
 
-        print('copilot enabled for sh files')
         return true
       end,
     },

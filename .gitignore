@@ -3,3 +3,4 @@ m2/.m2/repository
 nvim/.config/LazyVim/.config/LazyVim/lazy-lock.json
 nvim/**/lazy-lock.json
 aws/.aws/cli/cache
+k9s/.config/k9s/config.yaml

@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+vm=$1
+if [ -z "$@" ]; then
+    vm=win
+fi
+
+sudo virsh start $vm
+virt-manager --connect qemu:///system --show-domain-console $vm

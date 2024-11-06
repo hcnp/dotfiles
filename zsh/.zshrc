@@ -132,8 +132,8 @@ source /usr/share/doc/fzf/examples/completion.zsh
 
 # zoxide
 eval "$(zoxide init zsh)"
-zle -N zi
-bindkey '^[z' 'zi'
+zle -N __zoxide_zi
+bindkey '^[z' '__zoxide_zi'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

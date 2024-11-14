@@ -130,6 +130,6 @@ function gitBranchPrune() {
     git branch --merged | grep -v \* | xargs git branch -d
 }
 
-export PATH="$PATH:$HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin:$(go env GOPATH)/bin"
+export PATH="$PATH:$HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin:/usr/local/go/bin:$(/usr/local/go/bin/go env GOPATH)/bin"
 eval "$(direnv hook bash)"
 . "$HOME/.cargo/env"

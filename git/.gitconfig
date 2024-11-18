@@ -27,9 +27,6 @@
 	command = meld
 [init]
 	defaultBranch = main
-[credential "https://gitlab.admin.ehealth.sundhed.dk"]
-	helper = 
-	helper = !/home/linuxbrew/.linuxbrew/Cellar/glab/1.32.0/bin/glab auth git-credential
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential

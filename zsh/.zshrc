@@ -72,12 +72,26 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	zsh-autosuggestions
-	git
-	kubectl
+  alias-finder
+  direnv
+  fluxcd
+  fzf
+  gh
+  git
+  helm
+  hitchhiker
+  kubectl
+  zoxide
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# alias-finder plugin settings
+zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
+zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
 # The following lines were added by compinstall
 
@@ -124,15 +138,10 @@ bashcompinit
 ## pipx init
   #eval "$(register-python-argcomplete pipx)"
 
-# direnv init
-eval "$(direnv hook zsh)"
-
 # fzf
-source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
 # zoxide
-eval "$(zoxide init zsh)"
 zle -N __zoxide_zi
 bindkey '^[z' '__zoxide_zi'
 
@@ -160,6 +169,7 @@ bindkey '^[z' '__zoxide_zi'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Greeting in interactive shells
+if [[ -o interactive ]]; then
+  hitchhiker_cow
+fi

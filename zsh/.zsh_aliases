@@ -4,6 +4,8 @@ alias ltail="less -r +F"
 alias meld="guiRun /usr/bin/meld $@"
 alias nautilus="guiRun /usr/bin/nautilus $@"
 alias fd="fdfind"
+alias cat="bat"
+alias ls="eza --icons=auto"
 
 # Git
 alias g="git"

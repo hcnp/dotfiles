@@ -3,4 +3,4 @@ load_dotenv = true
 strict_env = true
 
 [whitelist]
-prefix = [ "~/src/trifork", "~/src/fut" ]
+prefix = [ "~/src/trifork", "~/src/fut", "~/src/energinet/" ]

@@ -1,0 +1,9 @@
+window-width = 150
+window-height = 50
+window-decoration = false
+
+font-family = "Cousine Nerd Font"
+# font-size = 12
+
+theme = "tokyonight"
+background-opacity = 0.90

@@ -7,3 +7,7 @@ font-family = "Cousine Nerd Font"
 
 theme = "tokyonight"
 background-opacity = 0.90
+
+# Gnome Terminal keybindings
+keybind = ctrl+shift+page_up=move_tab:-1
+keybind = ctrl+shift+page_down=move_tab:1

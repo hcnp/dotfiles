@@ -169,6 +169,14 @@ bindkey '^[z' '__zoxide_zi'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Shell screensaver
+zle -N zle-line-init _zle_line_init
+function _zle_line_init() {
+  TMOUT=180
+}
+TMOUT=180
+TRAPALRM() { cmatrix -s ; unset TMOUT }
+
 # Greeting in interactive shells
 if [[ -o interactive ]]; then
   hitchhiker_cow

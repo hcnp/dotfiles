@@ -74,6 +74,7 @@ ZSH_THEME="agnoster"
 plugins=(
   alias-finder
   direnv
+  eza
   fluxcd
   fzf
   gh
@@ -85,13 +86,19 @@ plugins=(
   zsh-autosuggestions
 )
 
-source $ZSH/oh-my-zsh.sh
-
 # alias-finder plugin settings
 zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
 zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
 zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
 zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
+
+# eza plugin settings
+zstyle ':omz:plugins:eza' 'dirs-first' yes # no by default
+zstyle ':omz:plugins:eza' 'git-status' yes # no by default
+zstyle ':omz:plugins:eza' 'icons' yes # no by default
+
+# Configuration of OMZ plugins with zstyle must be made before loading the plugins.
+source $ZSH/oh-my-zsh.sh
 
 # The following lines were added by compinstall
 

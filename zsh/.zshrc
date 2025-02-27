@@ -81,6 +81,7 @@ plugins=(
   git
   helm
   hitchhiker
+  kube-ps1
   kubectl
   zoxide
   zsh-autosuggestions
@@ -151,6 +152,8 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # zoxide
 zle -N __zoxide_zi
 bindkey '^[z' '__zoxide_zi'
+
+PROMPT='$(kube_ps1)'$PROMPT
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

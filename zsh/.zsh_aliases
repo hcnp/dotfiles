@@ -3,6 +3,7 @@ alias fut-login="saml2aws login --session-duration=43200 --role=arn:aws:iam::275
 alias ltail="less -r +F"
 alias meld="guiRun /usr/bin/meld $@"
 alias nautilus="guiRun /usr/bin/nautilus $@"
+alias apt="nala"
 alias fd="fdfind"
 alias cat="bat"
 

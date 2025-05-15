@@ -153,6 +153,20 @@ source /usr/share/doc/fzf/examples/completion.zsh
 zle -N __zoxide_zi
 bindkey '^[z' '__zoxide_zi'
 
+function get_cluster_short() {
+  echo "$1" | cut -d '.' -f1 | cut -d '-' -f1
+}
+
+export KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+
+function get_namespace() {
+  if [ "$1" != "default" ]; then
+    echo "$1"
+  fi
+}
+
+export KUBE_PS1_NAMESPACE_FUNCTION=get_namespace
+
 PROMPT='$(kube_ps1)'$PROMPT
 
 # export MANPATH="/usr/local/man:$MANPATH"

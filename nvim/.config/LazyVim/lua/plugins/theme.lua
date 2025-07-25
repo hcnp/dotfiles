@@ -3,18 +3,18 @@ return {
     "LazyVim/LazyVim",
     -- opts via function to manually merge fields with defaults
     opts = function(_, opts)
-      opts.colorscheme = "tokyonight"
-      -- opts.colorscheme = "catppuccin"
+      -- opts.colorscheme = "tokyonight"
+      opts.colorscheme = "catppuccin"
     end,
   },
   {
     "folke/tokyonight.nvim",
     opts = {
       transparent = true,
-      -- styles = {
-      --   sidebars = "transparent",
-      --   floats = "transparent",
-      -- },
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   },
   {

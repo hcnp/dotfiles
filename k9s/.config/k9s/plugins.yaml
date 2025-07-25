@@ -389,3 +389,28 @@ plugins:
   #################
   # end flux.yaml #
   #################
+
+
+  ########################
+  # start log-stern.yaml #
+  ########################
+  # Leverage stern (https://github.com/stern/stern) to output logs.
+  stern:
+    shortCut: Ctrl-Y
+    confirm: false
+    description: "Logs <Stern>"
+    scopes:
+      - pods
+    command: stern
+    background: false
+    args:
+      - --tail
+      - 50
+      - $FILTER
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+  ######################
+  # end log-stern.yaml #
+  ######################

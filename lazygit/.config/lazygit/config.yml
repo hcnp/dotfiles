@@ -3,6 +3,9 @@
 services:
   'gitlab.admin.ehealth.sundhed.dk': 'gitlab:gitlab.admin.ehealth.sundhed.dk'
 
+git:
+  parseEmoji: true
+
 gui:
   nerdFontsVersion: "3"
 

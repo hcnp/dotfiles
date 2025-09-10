@@ -8,3 +8,18 @@ See these articles:
 
 - [Manage Your Dotfiles Like a Superhero](https://www.jakewiesler.com/blog/managing-dotfiles)
 - [Managing Dotfiles With Stow](https://apiumhub.com/tech-blog-barcelona/managing-dotfiles-with-stow/)
+
+## Add exiting app
+
+```bash
+cd ~/.dotfiles
+mkdir -p lazygit/.config/lazygit
+stow --adopt -v lazygit
+```
+
+## Use dotfiles config for specific app
+
+```bash
+cd ~/.dotfiles
+stow -v lazygit
+```

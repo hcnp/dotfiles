@@ -11,3 +11,5 @@ alias cat="bat"
 alias g="git"
 alias gg="guiRun gitg --standalone $@"
 alias gff="git fetch && git merge --ff-only"
+
+alias powerrestart="systemctl restart --user org.gnome.SettingsDaemon.Power.target"

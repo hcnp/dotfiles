@@ -36,7 +36,7 @@ return {
             enabled = true,
           },
         lsp_trouble = true,
-        -- mini = true, -- breaks colored | indentation thingy
+        mini = true,
         navic = {
           enabled = true,
           custom_bg = "NONE",

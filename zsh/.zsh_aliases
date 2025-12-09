@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
+
+# Custom Aliases
 alias fut-login="saml2aws login --session-duration=43200 --role=arn:aws:iam::275145157824:role/trifork-platform --force --profile=futadmin"
 alias ltail="less -r +F"
+alias powerrestart="systemctl restart --user org.gnome.SettingsDaemon.Power.target"
+alias os-upgrade="sudo nala upgrade; sudo snap refresh; flatpak upgrade; brew upgrade"
+
+# Ovewriting default commands
 alias meld="guiRun /usr/bin/meld $@"
 alias nautilus="guiRun /usr/bin/nautilus $@"
 alias apt="nala"
@@ -11,5 +17,3 @@ alias cat="bat"
 alias g="git"
 alias gg="guiRun gitg --standalone $@"
 alias gff="git fetch && git merge --ff-only"
-
-alias powerrestart="systemctl restart --user org.gnome.SettingsDaemon.Power.target"

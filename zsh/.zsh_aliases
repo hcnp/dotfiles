@@ -5,6 +5,7 @@ alias fut-login="saml2aws login --session-duration=43200 --role=arn:aws:iam::275
 alias ltail="less -r +F"
 alias powerrestart="systemctl restart --user org.gnome.SettingsDaemon.Power.target"
 alias os-upgrade="sudo nala upgrade; sudo snap refresh; flatpak upgrade; brew upgrade"
+alias deb-install="mv ~/Downloads/*.deb /tmp && _ nala install /tmp/*.deb && rm /tmp/*.deb"
 
 # Ovewriting default commands
 alias meld="guiRun /usr/bin/meld $@"

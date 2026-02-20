@@ -5,7 +5,7 @@ window-decoration = false
 font-family = "Cousine Nerd Font"
 font-size = 10
 
-theme = "tokyonight"
+theme = "TokyoNight Moon"
 background-opacity = 0.90
 
 # Gnome Terminal keybindings

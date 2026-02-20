@@ -18,3 +18,6 @@ alias cat="bat"
 alias g="git"
 alias gg="guiRun gitg --standalone $@"
 alias gff="git fetch && git merge --ff-only"
+
+# AI
+alias oc="opencode"

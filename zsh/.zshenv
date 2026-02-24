@@ -9,3 +9,8 @@ export PAGER="less"
 # Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 . "$HOME/.cargo/env"
+
+# https://podman-desktop.io/docs/migrating-from-docker/using-the-docker_host-environment-variable
+if [[ -o interactive ]]; then
+  export DOCKER_HOST="unix://$(podman info --format '{{.Host.RemoteSocket.Path}}')"
+fi

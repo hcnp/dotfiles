@@ -181,6 +181,8 @@ else
 fi
 ###-end-opencode-completions-###
 
+compdef kubecolor=kubectl
+
 function get_cluster_short() {
   echo "$1" | cut -d '.' -f1 | cut -d '-' -f1
 }

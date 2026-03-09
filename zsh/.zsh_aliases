@@ -24,3 +24,7 @@ alias gff="git fetch && git merge --ff-only"
 
 # AI
 alias oc="opencode"
+
+# K8s
+alias k="kubecolor"
+alias kw="watch kubecolor --force-colors"

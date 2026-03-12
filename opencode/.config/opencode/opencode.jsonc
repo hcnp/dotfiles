@@ -1,0 +1,5 @@
+// https://github.com/cnicolov/opencode-plugin-simple-memory 
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["@knikolov/opencode-plugin-simple-memory"]
+}

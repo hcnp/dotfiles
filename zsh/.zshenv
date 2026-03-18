@@ -10,7 +10,16 @@ export PAGER="less"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 . "$HOME/.cargo/env"
 
-# https://podman-desktop.io/docs/migrating-from-docker/using-the-docker_host-environment-variable
-if [[ -o interactive ]]; then
-  export DOCKER_HOST="unix://$(podman info --format '{{.Host.RemoteSocket.Path}}')"
+# Exit if not running interactively.
+if ! [[ -o interactive ]]; then
+  return
 fi
+
+# Exit if we already ran this in the last 12 hours.
+local host=~/.docker/host
+if [[ ! -f "$host" ]] || find "$host" -mmin +720 &> /dev/null | grep -q .; then
+  echo "unix://$(podman info --format '{{.Host.RemoteSocket.Path}}')" > $host
+fi
+
+# https://podman-desktop.io/docs/migrating-from-docker/using-the-docker_host-environment-variable
+export DOCKER_HOST="$(<$host)"

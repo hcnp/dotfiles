@@ -5,3 +5,4 @@ nvim/**/lazy-lock.json
 aws/.aws/cli/cache
 k9s/.config/k9s/config.yaml
 /opencode/.config/opencode/.ocx
+/k9s/.config/k9s/skins

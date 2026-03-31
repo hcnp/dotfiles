@@ -23,3 +23,6 @@ fi
 
 # https://podman-desktop.io/docs/migrating-from-docker/using-the-docker_host-environment-variable
 export DOCKER_HOST="$(<$host)"
+
+# Env used in Claude GitHub plugin
+export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"

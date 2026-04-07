@@ -3,6 +3,7 @@
 [user]
 	email = hcnp@trifork.com
 	name = Henning C. Nielsen
+	signingkey = /home/hcnp/.ssh/github-trifork_ed25519.pub
 [core]
 	editor = nvim
 [push]
@@ -33,3 +34,9 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !gh auth git-credential
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = /home/hcnp/.ssh/allowed_signers

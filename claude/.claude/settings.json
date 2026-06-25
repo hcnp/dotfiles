@@ -1,0 +1,138 @@
+{
+  "model": "sonnet",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "EnterPlanMode|ExitPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/update-phase.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/update-phase.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "TaskCreate|TaskUpdate",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/update-phase.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/update-phase.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/update-phase.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Grep|Glob|Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/update-phase.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "ExitPlanMode|Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/update-phase.sh"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/update-phase.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/update-phase.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/src/trifork/tcs/.claude-sync/sync-on-host.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "github@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "tcs@tcs-cloud-native-tooling": true,
+    "no-chained-bash@tcs-cloud-native-tooling": true,
+    "check-container-image-updates@tcs-cloud-native-tooling": true,
+    "caveman@trifork": true,
+    "trifork-skills@trifork": true,
+    "mattpocock-skills@trifork": true
+  },
+  "extraKnownMarketplaces": {
+    "tcs-cloud-native-tooling": {
+      "source": {
+        "source": "github",
+        "repo": "trifork/tcs-ai"
+      }
+    },
+    "trifork": {
+      "source": {
+        "source": "github",
+        "repo": "trifork/skills"
+      },
+      "autoUpdate": true
+    }
+  },
+  "syntaxHighlightingDisabled": false,
+  "advisorModel": "opus",
+  "skipDangerousModePermissionPrompt": true,
+  "editorMode": "normal"
+}

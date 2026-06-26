@@ -5,6 +5,8 @@ services:
 
 git:
   parseEmoji: true
+  # Needed if you want to amend a signed commit and you are using an agent so you don't have to enter your passphrase again.
+  overrideGpg: true
 
 gui:
   nerdFontsVersion: "3"

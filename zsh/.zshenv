@@ -5,6 +5,9 @@ export PATH="$(go env GOPATH)/bin:$HOME/.dotnet/tools:$PATH"
 export PATH="$HOME/bin:$HOME/.local/bin:${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export EDITOR="nvim"
 export PAGER="less"
+# https://donottrack.sh/
+# Disable tracking and telemetry globally where this is supported. This is a privacy measure and does not affect functionality.
+export DO_NOT_TRACK=1
 
 # Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

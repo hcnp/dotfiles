@@ -8,6 +8,10 @@ aliases:
   rb: rolebindings
   np: networkpolicies
 
+  # external-secrets
+  es: externalsecrets
+  ss: secretstores
+
   # cnpg
   ccs: clusters.postgresql.cnpg.io
   cdbs: databases.postgresql.cnpg.io

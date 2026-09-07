@@ -4,7 +4,7 @@ return {
     -- opts via function to manually merge fields with defaults
     opts = function(_, opts)
       -- opts.colorscheme = "tokyonight"
-      opts.colorscheme = "catppuccin"
+      opts.colorscheme = "catppuccin-nvim"
     end,
   },
   {

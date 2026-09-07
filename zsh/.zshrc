@@ -197,6 +197,8 @@ function get_namespace() {
 
 export KUBE_PS1_NAMESPACE_FUNCTION=get_namespace
 
+export KUBE_PS1_HIDE_IF_NOCONTEXT=true
+
 PROMPT='$(kube_ps1)'$PROMPT
 
 # export MANPATH="/usr/local/man:$MANPATH"

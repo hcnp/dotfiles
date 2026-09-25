@@ -14,8 +14,12 @@ alias powerrestart="systemctl restart --user org.gnome.SettingsDaemon.Power.targ
 alias meld="guiRun /usr/bin/meld $@"
 alias nautilus="guiRun /usr/bin/nautilus $@"
 alias apt="nala"
-alias fd="fdfind"
 alias cat="bat"
+
+# Replaced with alternative on ubuntu
+#   sudo update-alternatives --install /usr/bin/fd fdfind /usr/bin/fdfind 500
+#   sudo update-alternatives --install /usr/bin/fd fdfind /usr/bin/find 50
+# alias fd="fdfind"
 
 # Git
 alias g="git"

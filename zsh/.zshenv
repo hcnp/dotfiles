@@ -11,7 +11,9 @@ export DO_NOT_TRACK=1
 
 # Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-. "$HOME/.cargo/env"
+if command -v cargo &> /dev/null; then
+  . "$HOME/.cargo/env"
+fi
 
 # Exit if not running interactively.
 if ! [[ -o interactive ]]; then

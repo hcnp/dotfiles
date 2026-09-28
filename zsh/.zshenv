@@ -15,19 +15,20 @@ if command -v cargo &> /dev/null; then
   . "$HOME/.cargo/env"
 fi
 
+# Above the interactive guard so GUI-launched tools (e.g. VS Code Dev Containers) get it too.
+if [ -S "$XDG_RUNTIME_DIR/podman/podman.sock" ]; then
+  export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
+  # Disable as docker compose with bake does not work with Podman
+  export COMPOSE_BAKE=false
+  # Podman has no BuildKit; classic builder makes compose build via buildah,
+  # which can see locally built images (devcontainers/cli#863).
+  export DOCKER_BUILDKIT=0
+fi
+
 # Exit if not running interactively.
 if ! [[ -o interactive ]]; then
   return
 fi
-
-# Exit if we already ran this in the last 12 hours.
-local host=~/.docker/host
-if [[ ! -f "$host" ]] || find "$host" -mmin +720 &> /dev/null | grep -q .; then
-  echo "unix://$(podman info --format '{{.Host.RemoteSocket.Path}}')" > $host
-fi
-
-# https://podman-desktop.io/docs/migrating-from-docker/using-the-docker_host-environment-variable
-export DOCKER_HOST="$(<$host)"
 
 # Env used in Claude GitHub plugin
 export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"

@@ -14,7 +14,14 @@ alias powerrestart="systemctl restart --user org.gnome.SettingsDaemon.Power.targ
 alias meld="guiRun /usr/bin/meld $@"
 alias nautilus="guiRun /usr/bin/nautilus $@"
 alias apt="nala"
-alias cat="bat"
+
+# Support Ubuntu rename to batcat
+if command -v bat &> /dev/null; then
+  alias cat="bat"
+elif command -v batcat &> /dev/null; then
+  alias cat="batcat"
+  alias bat="batcat"
+fi
 
 # Replaced with alternative on ubuntu
 #   sudo update-alternatives --install /usr/bin/fd fdfind /usr/bin/fdfind 500

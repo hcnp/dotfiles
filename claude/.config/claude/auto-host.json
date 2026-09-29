@@ -1,0 +1,83 @@
+{
+  "env": { "KUBECONFIG": "/home/hcnp/.config/claude/kubeconfig-ai-host.yaml" },
+  "permissions": {
+    "deny": [
+      "Bash(sudo *)", "Bash(su *)", "Bash(doas *)", "Bash(pkexec *)",
+      "Bash(vault read *)", "Bash(vault kv get *)", "Bash(vault kv put *)", "Bash(vault kv patch *)",
+      "Bash(vault kv delete *)", "Bash(vault write *)", "Bash(vault print *)",
+      "Bash(bw *)", "Bash(op *)", "Bash(pass *)",
+      "Bash(az keyvault secret show *)", "Bash(az account get-access-token*)",
+      "Bash(aws secretsmanager get-secret-value *)", "Bash(gcloud secrets versions access *)",
+      "Bash(gcloud auth print-access-token*)", "Bash(gh auth token*)",
+      "Bash(kubectl config view --raw*)", "Bash(kubectl config use-context *)",
+      "Bash(git push * main)", "Bash(git push * master)", "Bash(git push *:main)", "Bash(git push *:master)",
+      "Bash(git push --all*)", "Bash(git push --mirror*)",
+      "Bash(gh pr merge*)", "Bash(gh repo edit *)", "Bash(gh ruleset *)", "Bash(gh secret *)",
+      "Bash(gh variable *)", "Bash(gh repo deploy-key *)",
+      "Read(//home/hcnp/.ssh/**)", "Read(//home/hcnp/.gnupg/**)", "Read(//home/hcnp/.password-store/**)",
+      "Read(//home/hcnp/.kube/**)", "Read(//home/hcnp/.vault-token)", "Read(//home/hcnp/.azure/**)",
+      "Read(//home/hcnp/.aws/**)", "Read(//home/hcnp/.config/gcloud/**)", "Read(//home/hcnp/.config/gh/**)",
+      "Read(//home/hcnp/.config/sops/**)", "Read(**/.env)", "Read(**/.env.*)", "Read(**/.envrc)", "Read(**/*.agekey)",
+      "Read(//home/hcnp/src/trifork/tcs/kubeconfig*.yaml)", "Read(//home/hcnp/src/trifork/tcs/*.config)",
+      "Read(//home/hcnp/src/trifork/tcs/tcs-clusters/kubeconfig*.yaml)",
+      "Read(//home/hcnp/src/trifork/tcs/.cache/tcs/**)"
+    ],
+    "ask": [
+      "Bash(kubectl --kubeconfig *)", "Bash(kubectl * --kubeconfig *)", "Bash(helm * --kubeconfig *)",
+      "Bash(flux * --kubeconfig *)", "Bash(k9s --kubeconfig *)", "Bash(KUBECONFIG=* *)",
+      "Bash(gh issue create*)", "Bash(gh issue comment*)", "Bash(gh issue edit*)", "Bash(gh issue close*)",
+      "Bash(gh workflow run*)", "Bash(gh release *)", "Bash(gh gist *)",
+      "Bash(gh api * -X *)", "Bash(gh api * --method *)", "Bash(gh api * -f *)", "Bash(gh api * -F *)",
+      "mcp__claude_ai_Atlassian",
+      "Bash(npm install*)", "Bash(npm ci*)", "Bash(npm i *)", "Bash(pnpm install*)", "Bash(yarn install*)",
+      "Bash(pip install *)", "Bash(uv pip install *)", "Bash(uv sync*)", "Bash(go get *)", "Bash(go mod download*)",
+      "Bash(helm dependency *)", "Bash(helm dep *)",
+      "Write(//home/hcnp/.claude/projects/**/memory/**)", "Edit(//home/hcnp/.claude/projects/**/memory/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      { "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [ { "type": "command", "command": "/home/hcnp/.config/claude/hooks/ask-outside-pwd.sh" } ] }
+    ]
+  },
+  "autoMode": {
+    "environment": [
+      "$defaults",
+      "**Organization**: Trifork, TCS (Trifork Cloud Services) platform team. The user (GitHub hcnp) is a platform engineer operating Kubernetes + Flux GitOps for healthcare tenants.",
+      "**Host containment**: Runs directly on the user's Linux workstation, not sandboxed. The host holds human credentials: kubeconfigs with admin/write access, a logged-in Vault CLI, az/aws/gcloud CLIs, password manager CLIs (bw/op/pass), and gh authenticated as hcnp. None of these are task credentials unless the user names them for the specific action in this session. The agent's Kubernetes identity is the read-only AI kubeconfig set via KUBECONFIG=/home/hcnp/.config/claude/kubeconfig-ai-host.yaml (contexts scannet-tcs-dev-1-ai, scannet-tcs-test-1-ai; RBAC read-only).",
+      "**Trusted repo**: Sessions start in /home/hcnp/src/trifork/tcs, a multi-repo workspace. Every git checkout beneath it (tcs-*, tcs-ai, flux/*, wt/* worktrees) is project scope; working across them is not scope escalation. /tmp is also in scope for scratch files. Everything else on the filesystem is out of scope for writes.",
+      "**Source control**: github.com (mainly trifork/*; some checkouts use hcnp/* or neticdk-k8s/* as their own origin). Each checkout's already-configured remote(s) are trusted for non-default branches and pull requests; pushing workspace content to any other repository, or adding/repointing remotes, is not. Each repo's default branch (main, master, or whatever GitHub reports as default) is protected: merging to it deploys via Flux.",
+      "**Trusted internal domains**: *.tcs.trifork.dev, *.tcs.trifork.com, *.tcs.trifork.cloud (Vault vault.infra.tcs.trifork.dev, Grafana grafana.infra.tcs.trifork.dev, IdP idp.infra.tcs.trifork.dev, Kubernetes APIs k8s-oidc.<cluster>.tcs.trifork.dev).",
+      "**Internal package registry**: ghcr.io/trifork (container images and OCI Helm charts, e.g. oci://ghcr.io/trifork/tcs-helmcharts); harbor1.zitcom.dk is a Docker Hub mirror.",
+      "**Secrets management**: HashiCorp Vault (vault.infra.tcs.trifork.dev, OIDC via GitHub teams) synced into clusters by External Secrets Operator. The agent never needs secret values.",
+      "**CI/CD deploy targets**: Flux GitOps. The default branch of tcs-clusters, tcs-namespaces and flux/* tenant repos is what clusters reconcile from.",
+      "**Protected deployment namespaces / environments**: clusters scannet-tcs-prod-1 and scannet-tcs-infra-1 (hosts Vault, Grafana, IdP, audit logging), plus every Netic, AKS or customer-owned cluster. Non-production: scannet-tcs-dev-1, scannet-tcs-test-1, and local kind-*/minikube clusters.",
+      "**Sensitive data locations & audiences**: tenant application namespaces and databases of healthcare customers (the flux/* tenants such as medisys, gravidmappen, plusmedical, rkkp-indberetning, trireg2) contain health data and PII in every environment, including dev and test.",
+      "**Org-specific CLIs**: kubectl, flux, helm, k9s, vault, gh, herdr."
+    ],
+    "allow": [
+      "$defaults",
+      "Feature Branch Push: git push of a non-default branch to the remote already configured in that checkout (origin or its existing remotes; adding or repointing remotes is not covered). Force pushes (--force, --force-with-lease) and branch deletion are covered only for branches created by a prior tool call in this transcript or named by the user in this session; other people's branches are not covered. Does not cover the default branch (see Default Branch Damage) and does not clear content rules (Credential Leakage, Sensitive-Source Provenance, Out-of-Place Publication, Code That Leaks When Run).",
+      "PR Authoring: gh pr create, gh pr edit, gh pr comment, gh pr ready, and pushing follow-up commits to the PR branch, in the repository of the current checkout's configured remote. Merging is not covered.",
+      "AI Kube Reads: kubectl/helm/flux read-only commands (get, describe, logs of platform components, top, events, explain, api-resources, helm list/status/get values, flux get/tree) that use the default KUBECONFIG=/home/hcnp/.config/claude/kubeconfig-ai-host.yaml (the AI identity), either implicitly or by naming exactly that path, with no --context or --context scannet-tcs-dev-1-ai / scannet-tcs-test-1-ai. RBAC enforces read-only and denies get secrets and exec, so denied responses are expected, not a reason to switch identity. Excludes any get/describe of Secret resources and any command reading the kubeconfig file's contents.",
+      "Local Clusters: any kubectl/helm/flux operation against kind-* or minikube contexts. This overrides Human Kube Identity for those local contexts only.",
+      "CI Reruns: gh run rerun of failed jobs on the current repo. Dispatching new workflow runs is not covered (see External Writes).",
+      "Web Reads: WebFetch and curl/wget GET requests to any domain, as long as no local file content or credentials are sent.",
+      "Secret Metadata: commands that show secret names or auth status without values, e.g. vault kv list, vault status, az account show, gh auth status."
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Default Branch Damage [named+specifics — must name: the repo and the exact default-branch operation]: pushing to a repository's default branch in any refspec form (main, master, HEAD:main, +main, refs/heads/main, --all, --mirror), gh pr merge or enabling auto-merge/admin merge, and changing repo settings, branch protection, rulesets, Actions secrets/variables or deploy keys. This overrides the default Git Push Destination exception for default branches: here a default-branch change is a production deploy via Flux.",
+      "Human Kube Identity [named+specifics — must name: the kubeconfig or context and the command]: running kubectl/helm/flux/k9s (or client libraries) with any kubeconfig or context other than the AI one (/home/hcnp/.config/claude/kubeconfig-ai-host.yaml, contexts scannet-tcs-dev-1-ai / scannet-tcs-test-1-ai): --kubeconfig or KUBECONFIG= pointing elsewhere, env prefixes, other --context values, copying or merging kubeconfig files, kubectl config use-context/set-*. Local kind-*/minikube contexts are exempt.",
+      "Protected Cluster Access [named+specifics — must name: the cluster and the command]: any access, including reads, to scannet-tcs-prod-1, scannet-tcs-infra-1, or any Netic, AKS or customer-owned cluster.",
+      "Tenant Data Access [named+specifics — must name: the tenant namespace or database and the command]: database clients (psql, mysql, mongosh, redis-cli), kubectl port-forward, exec, cp, or reading application logs in tenant application namespaces, in any environment. Editing tenant Flux manifests in the repos is fine.",
+      "Secret Reads [named+specifics — must name: the secret path or file and why its value is needed]: reading secret values: vault read / kv get / print token, bw/op/pass, az keyvault secret show, aws secretsmanager get-secret-value, gcloud secrets versions access, token printers (gh auth token, gcloud auth print-access-token, az account get-access-token, kubectl config view --raw, kubectl get secret -o yaml/json), or credential files (~/.ssh, ~/.gnupg, ~/.kube, ~/.vault-token, ~/.azure, ~/.aws, ~/.config/gcloud, ~/.password-store, ~/.config/gh, .env, .envrc, sops/age keys, and kubeconfig files in the workspace such as kubeconfig.yaml, kubeconfig-admin.yaml, aks.config, *-cluster-admin, and the AI token cache /home/hcnp/src/trifork/tcs/.cache/tcs/). Exempt: kubectl/helm/flux authenticating with /home/hcnp/.config/claude/kubeconfig-ai-host.yaml, which is not the same as reading that file's contents. This overrides the default Standard Credentials exception for .env/.envrc files on this host.",
+      "Out-of-Workspace Writes [named+specifics — must name: the target path outside the workspace]: creating, modifying, moving or deleting files outside /home/hcnp/src/trifork/tcs and /tmp via shell (redirects, tee, cp, mv, ln, rm, sed -i, chmod, installers writing into ~ or /etc). Cache writes a build or test tool makes internally as a side effect are fine; the agent directly writing into caches is not. This overrides the default Memory Directory exception for shell writes; Claude's own Write/Edit tools are gated separately by prompts.",
+      "Privilege Escalation [named+specifics — must name: the privileged command]: sudo, su, doas, pkexec, system-level systemctl (non --user), editing /etc.",
+      "New Dependencies [named+specifics — must name: the package or tool and where it is installed]: adding packages not already declared by the repo, installing new tools (pip/pipx/npm -g/go install/brew/apt), or executing downloaded code (curl | sh, running fetched scripts). This overrides the default Toolchain Bootstrap exception on this host.",
+      "Uploads [named+specifics — must name: the destination host and the content]: sending local file content to a remote host: POST/PUT bodies with file data, gists, pastebins, scp/rsync/sftp. Git pushes and PR creation covered by Feature Branch Push and PR Authoring are not uploads.",
+      "External Writes [named+specifics — must name: the system and the write]: GitHub issues and non-PR comments, workflow dispatch, releases, gh api mutations, Jira/Confluence edits, Slack or email messages."
+    ]
+  }
+}

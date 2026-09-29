@@ -35,6 +35,9 @@ alias gff="git fetch && git merge --ff-only"
 
 # AI
 alias oc="opencode"
+claude_cmd="command claude --settings ~/.config/claude/auto-host.json"
+alias claude="$claude_cmd"
+alias ccc="$claude_cmd"
 
 # K8s
 alias k="kubecolor"

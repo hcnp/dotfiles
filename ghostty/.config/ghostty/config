@@ -1,3 +1,4 @@
+# vim: set filetype=toml:
 window-width = 175
 window-height = 60
 window-decoration = false
@@ -7,6 +8,9 @@ font-size = 10
 
 theme = "TokyoNight Moon"
 background-opacity = 0.90
+
+# GTK settings
+gtk-custom-css = ./gtk.css
 
 # Gnome Terminal keybindings
 keybind = ctrl+shift+page_up=move_tab:-1

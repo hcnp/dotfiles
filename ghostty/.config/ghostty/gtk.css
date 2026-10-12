@@ -1,0 +1,10 @@
+window {
+  /* Round the window edges */
+  border-radius: 15px;
+
+  /* Apply a thin 1px border with your chosen color */
+  /* border: 1px solid #blue; */
+
+  /* Ensures the terminal grid background clips cleanly to your rounded border */
+  background-clip: padding-box;
+}

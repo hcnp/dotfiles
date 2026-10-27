@@ -85,6 +85,7 @@ plugins=(
   kubectl
   zoxide
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 # alias-finder plugin settings

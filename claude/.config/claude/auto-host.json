@@ -32,7 +32,7 @@
       "Bash(npm install*)", "Bash(npm ci*)", "Bash(npm i *)", "Bash(pnpm install*)", "Bash(yarn install*)",
       "Bash(pip install *)", "Bash(uv pip install *)", "Bash(uv sync*)", "Bash(go get *)", "Bash(go mod download*)",
       "Bash(helm dependency *)", "Bash(helm dep *)",
-      "Write(//home/hcnp/.claude/projects/**/memory/**)", "Edit(//home/hcnp/.claude/projects/**/memory/**)"
+      "Edit(//home/hcnp/.claude/projects/**/memory/**)"
     ]
   },
   "hooks": {

@@ -3,6 +3,8 @@ window-width = 175
 window-height = 60
 window-decoration = false
 
+cursor-style-blink = false
+
 font-family = "Cousine Nerd Font"
 font-size = 10
 

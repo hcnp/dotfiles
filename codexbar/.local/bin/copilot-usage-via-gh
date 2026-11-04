@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Feed the gh login token to CodexBar's Copilot provider without storing it.
+# Absolute paths: GNOME Shell's PATH does not include linuxbrew.
+set -euo pipefail
+
+token="$(/home/linuxbrew/.linuxbrew/bin/gh auth token --hostname github.com)"
+[[ -n "$token" ]] || { printf 'No gh token available\n' >&2; exit 1; }
+export COPILOT_API_TOKEN="$token"
+unset token
+exec /home/linuxbrew/.linuxbrew/bin/codexbar --provider copilot --source api --format json

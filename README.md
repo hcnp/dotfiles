@@ -23,3 +23,24 @@ stow --adopt -v lazygit
 cd ~/.dotfiles
 stow -v lazygit
 ```
+
+## CodexBar (GNOME AI usage panel)
+
+Requires Homebrew (Linuxbrew) installs of the CLI and `gh`; the wrapper and the ini hard-code
+`/home/linuxbrew/.linuxbrew/bin/{codexbar,gh}` (edit them if yours differ):
+
+```bash
+brew install steipete/tap/codexbar gh
+```
+
+Also needs existing `claude` and `gh auth login` sessions. No tokens are stored.
+
+Stow links the Copilot wrapper into `~/.local/bin`. The GNOME extension keeps its settings in
+dconf, which stow cannot manage, so load them once by hand. The extension does not expand
+`$HOME` in commands, so `envsubst` fills in `${HOME}` in the ini:
+
+```bash
+cd ~/.dotfiles
+stow -v codexbar
+envsubst < codexbar/.config/codexbar/dconf.ini | dconf load /org/gnome/shell/extensions/codexbar/
+```

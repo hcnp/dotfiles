@@ -7,4 +7,8 @@ token="$(/home/linuxbrew/.linuxbrew/bin/gh auth token --hostname github.com)"
 [[ -n "$token" ]] || { printf 'No gh token available\n' >&2; exit 1; }
 export COPILOT_API_TOKEN="$token"
 unset token
-exec /home/linuxbrew/.linuxbrew/bin/codexbar --provider copilot --source api --format json
+
+# Pass codexbar's own arguments through. The extension prefs reset any
+# predefined provider's command that lacks "--provider", so the configured
+# command must carry them: copilot-usage-via-gh --provider copilot --source api --format json
+exec /home/linuxbrew/.linuxbrew/bin/codexbar "$@"

@@ -1,0 +1,10 @@
+{
+  "zoom": 1,
+  "sounds": {
+    "enabled": true
+  },
+  "font_ligatures": true,
+  "minimum_contrast": 1,
+  "font_size": 13,
+  "font": "Cousine Nerd Font"
+}
